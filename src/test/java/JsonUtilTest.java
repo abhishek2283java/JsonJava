@@ -1,5 +1,7 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import model.DatePojo;
+import model.DatePojoJava8;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class JsonUtilTest {
     Person person = new Person("20120101-8858", "Ram Shyam", 30);
     Person personWithHobby = new Person("20140202-1245", "Ram Shyam", 30, List.of("Swimming", "Painting"));
+
+    private String dateScenarioOne = "{\n" +
+            "  \"name\": \"Abhikriti\",\n" +
+            "  \"dateOfBirth\": \"2012-04-04\"\n" +
+            "}";
 
     @Test
     void testToString() {
@@ -75,5 +82,20 @@ class JsonUtilTest {
         final JsonNode jsonNode = JsonUtil.toJson(person);
         final String str = JsonUtil.prettyPrint(jsonNode);
         System.out.println("Pretty String = " + str);
+    }
+
+    @Test
+    void testDateScenarioOne() throws JsonProcessingException {
+        final JsonNode jsonNode = JsonUtil.parse(dateScenarioOne);
+        final DatePojo datePojo = JsonUtil.fromJSon(jsonNode, DatePojo.class);
+        System.out.println("DATE : " + datePojo.getDateOfBirth());  //Wed Apr 04 02:00:00 CEST 2012
+    }
+
+    @Test
+    void testDateScenarioOneUsingJava8LocalDate() throws JsonProcessingException {
+        final JsonNode jsonNode = JsonUtil.parse(dateScenarioOne);
+        final DatePojoJava8 datePojo = JsonUtil.fromJSon(jsonNode, DatePojoJava8.class);
+        System.out.println("DATE : " + datePojo.getDateOfBirth());
+        //com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalDate` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling
     }
 }
