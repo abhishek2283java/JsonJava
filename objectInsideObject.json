@@ -1,0 +1,15 @@
+{
+  "authorName": "Rui",
+  "books": [
+    {
+      "title": "Around the Mars in 81 Days",
+      "inPrint": true,
+      "publishDate": "2022-12-25"
+    },
+    {
+      "title": "What to do on Sundays",
+      "inPrint": true,
+      "publishDate": "2021-12-25"
+    }
+  ]
+}
