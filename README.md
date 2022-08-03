@@ -1,3 +1,5 @@
+This project demonstrates the usage of Jackson library to work with JSON data in Java
+
 Parsing a date property using Java 8 DateTime (LocalDate):
 JUnit test testDateScenarioOneUsingJava8LocalDate shows this feature:
 1. Need to update the POM by adding https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.13.3
