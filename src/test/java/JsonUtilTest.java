@@ -95,7 +95,8 @@ class JsonUtilTest {
     void testDateScenarioOneUsingJava8LocalDate() throws JsonProcessingException {
         final JsonNode jsonNode = JsonUtil.parse(dateScenarioOne);
         final DatePojoJava8 datePojo = JsonUtil.fromJSon(jsonNode, DatePojoJava8.class);
-        System.out.println("DATE : " + datePojo.getDateOfBirth());
+        System.out.println("DATE Using Java 8: " + datePojo.getDateOfBirth());
         //com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalDate` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling
+        assertThat(datePojo.getDateOfBirth().toString()).isEqualTo("2012-04-04");
     }
 }
